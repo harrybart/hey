@@ -9,8 +9,10 @@ const app = express();
 app.use(express.static("client"));
 
 app.get("/", (_req, res) => {
-  res.render("index");
+  res.render("chats");
 });
+
+app.get("/chats", (_req, res) => res.redirect("/chats.html"));
 
 const httpServer = createServer(app);
 
