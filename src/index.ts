@@ -20,7 +20,9 @@ router.get("/chats", (_req, res) => res.redirect("/chats.html"));
 router.post("/", (req, res) => res.json({ postBody: req.body }));
 
 app.use("/.netlify/functions/server", router);
-app.use("/", (_req, res) => res.sendFile(join(__dirname, "../index.html")));
+app.use("/", (_req, res) =>
+  res.sendFile(join(__dirname, "../client/index.html"))
+);
 
 const httpServer = createServer(app);
 
