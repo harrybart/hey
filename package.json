@@ -10,7 +10,7 @@
     "start": "ts-node ./src/index.ts",
     "deploy": "npm run build && netlify-lambda build dist",
     "build": "tsc",
-    "dev": "nodemon --exec ts-node ./src/index.ts",
+    "dev": "nodemon server.js",
     "hooks:uninstall": "node node_modules/husky uninstall",
     "hooks:install": "node node_modules/husky install",
     "fix": "run-s fix:*",
