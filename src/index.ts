@@ -2,6 +2,7 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import express from "express";
 import serverless from "serverless-http";
+import { join } from "path";
 
 const app = express();
 
@@ -19,6 +20,7 @@ router.get("/chats", (_req, res) => res.redirect("/chats.html"));
 router.post("/", (req, res) => res.json({ postBody: req.body }));
 
 app.use("/.netlify/functions/server", router);
+app.use("/", (_req, res) => res.sendFile(join(__dirname, "../index.html")));
 
 const httpServer = createServer(app);
 
