@@ -9,11 +9,16 @@ const app = express();
 
 app.use(express.static("client"));
 
-app.use("/", (_req, res) => {
-  res.render("chats");
+const router = express.Router();
+router.get("/", (req, res) => {
+  res.writeHead(200, { "Content-Type": "text/html" });
+  res.write("<h1>Hello from Express.js!</h1>");
+  res.end();
 });
+router.get("/chats", (req, res) => res.redirect("/chats.html"));
+router.post("/", (req, res) => res.json({ postBody: req.body }));
 
-app.use("/chats", (_req, res) => res.redirect("/chats.html"));
+app.use("/.netlify/functions/server", router);
 
 const httpServer = createServer(app);
 
