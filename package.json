@@ -8,6 +8,7 @@
   "scripts": {
     "bootstrap": "yarn hooks:install",
     "start": "ts-node ./src/index.ts",
+    "deploy": "npm run build && netlify-lambda build dist",
     "build": "tsc",
     "dev": "nodemon --exec ts-node ./src/index.ts",
     "hooks:uninstall": "node node_modules/husky uninstall",
@@ -31,14 +32,16 @@
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^7.0.2",
     "nodemon": "^2.0.12",
     "prettier": "^2.4.0",
     "ts-node": "^10.2.1",
-    "husky": "^7.0.2",
     "typescript": "^4.4.2"
   },
   "dependencies": {
     "express": "^4.17.1",
+    "netlify-lambda": "^2.0.14",
+    "serverless-http": "^2.7.0",
     "socket.io": "^4.2.0"
   },
   "engines": {

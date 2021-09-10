@@ -1,6 +1,7 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
 import express from "express";
+import serverless from "serverless-http";
 
 const app = express();
 
@@ -27,3 +28,6 @@ webSocket.on("connection", (socket) => {
 httpServer.listen(3000, () => {
   console.log("Webserver started");
 });
+
+module.exports = app;
+module.exports.handler = serverless(app);
