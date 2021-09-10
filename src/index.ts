@@ -9,11 +9,11 @@ const app = express();
 
 app.use(express.static("client"));
 
-app.get("/", (_req, res) => {
+app.use("/", (_req, res) => {
   res.render("chats");
 });
 
-app.get("/chats", (_req, res) => res.redirect("/chats.html"));
+app.use("/chats", (_req, res) => res.redirect("/chats.html"));
 
 const httpServer = createServer(app);
 
@@ -25,9 +25,9 @@ webSocket.on("connection", (socket) => {
   console.log("Websocket connected", socket.id);
 });
 
-httpServer.listen(3000, () => {
-  console.log("Webserver started");
-});
+// httpServer.listen(3000, () => {
+//   console.log("Webserver started");
+// });
 
 module.exports = app;
 module.exports.handler = serverless(app);
