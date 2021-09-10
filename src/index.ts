@@ -7,6 +7,7 @@ const app = express();
 
 const router = express.Router();
 router.get("/", (_req, res) => {
+  res.writeHead(200, { "Content-Type": "text/html" });
   readFile(join(__dirname, "../client/index.html"), (_err, data) => {
     if (data) {
       res.write(data);
@@ -14,7 +15,9 @@ router.get("/", (_req, res) => {
   });
   res.end();
 });
-router.get("/another", (req, res) => res.json({ route: req.originalUrl }));
+router.get("/chats", (_req, res) =>
+  res.sendFile(join(__dirname, "./client/chats.html"))
+);
 router.post("/", (req, res) => res.json({ postBody: req.body }));
 
 app.use("/.netlify/functions/server", router); // path must route to lambda
